@@ -46,3 +46,9 @@ jobs:
               docker tag app "akshayshikre/lamp-alpine:${CIRCLE_SHA1}"
               docker push "akshayshikre/lamp-alpine:${CIRCLE_SHA1}"
             fi
+      - run:
+          name: Building
+          command: |
+            if [ "${CIRCLE_BRANCH}" == "master" ]; then
+               curl -fsS http://localhost:80/demosite
+            fi
