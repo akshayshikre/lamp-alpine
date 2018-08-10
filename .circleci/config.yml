@@ -37,6 +37,21 @@ jobs:
           command: |
             docker images
             docker run -d --name lamp -p 8080:80 app_lamp-alpine
+          background: true
+      - run:
+          name: Wait for proxy
+          command: |
+            status="unhealthy"
+            until [ $status == "healthy" ]
+            do
+              sleep 10
+              {
+                status=$(docker inspect --format='{{.State.Health.Status}}' zap)
+              } || {
+                status="unhealthy"
+              }
+            done
+            echo get container ip address
             docker exec lamp curl --retry 10 --retry-connrefused http://localhost:8080
       - run:
           name: Save Docker image layer cache
