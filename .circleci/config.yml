@@ -35,8 +35,6 @@ jobs:
       - run:
           name: "Start Service and Check That it’s Running"
           command: |
-            docker images
-            docker run --name lamp --network host -d -p 8080:80/tcp app_lamp-alpine
             sleep 10
             docker images
             docker ps -a
