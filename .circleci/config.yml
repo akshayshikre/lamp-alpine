@@ -36,10 +36,10 @@ jobs:
           name: "Start Service and Check That it’s Running"
           command: |
             docker images
-            docker run -d --publish 8080:80/tcp app_lamp-alpine
+            docker run -d --publish 80:80/tcp app_lamp-alpine
             sleep 10
             docker images
-            curl --silent --fail localhost:8080/demosite || exit 1 
+            curl --silent --fail http://localhost/demosite || exit 1 
       - run:
           name: Save Docker image layer cache
           command: |
