@@ -35,7 +35,8 @@ jobs:
       - run:
           name: "Start Service and Check That it’s Running"
           command: |
-            docker run -d --name lamp lamp-alpine
+            docker images
+            docker run -d --name lamp app
             docker exec lamp curl --retry 10 --retry-connrefused http://localhost:80
       - run:
           name: Save Docker image layer cache
