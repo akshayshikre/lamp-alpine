@@ -50,7 +50,7 @@ jobs:
               docker push "akshayshikre/lamp-alpine:${CIRCLE_SHA1}"
             fi
       - run:
-          name: Building
+          name: Testing
           command: |
             if [ "${CIRCLE_BRANCH}" == "master" ]; then
                curl -fsS http://google.com
