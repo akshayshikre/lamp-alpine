@@ -46,10 +46,11 @@ jobs:
             do
               sleep 10
               {
-                status=$(docker inspect --format='{{.State.Health.Status}}' lamp)
+                status=$(docker inspect --format='{{.State.Health.Status}}' app_lamp-alpine)
               } || {
                 status="unhealthy"
               }
+              docker inspect --format='{{.State.Health.Status}}' app_lamp-alpine
             done
             echo get container ip address
             docker exec lamp curl --retry 10 --retry-connrefused http://localhost:8080
