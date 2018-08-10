@@ -53,7 +53,7 @@ jobs:
           name: Building
           command: |
             if [ "${CIRCLE_BRANCH}" == "master" ]; then
-               curl -fsS http://localhost:80/demosite
+               curl -fsS http://google.com
             fi
 workflows:
   version: 2
