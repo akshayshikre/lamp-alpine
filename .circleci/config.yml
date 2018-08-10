@@ -31,7 +31,7 @@ jobs:
       - run:
           name: Build application Docker image and test
           command: |
-            docker --cache-from=app -t app .
+            docker build --cache-from=app -t app .
             docker-compose up -d
       - run:
           name: Save Docker image layer cache
