@@ -36,7 +36,7 @@ jobs:
           name: "Start Service and Check That it’s Running"
           command: |
             docker images
-            docker run -d --publish 8080:80/tcp app_lamp-alpine
+            docker run --name lamp --network host -d --publish 8080:80/tcp app_lamp-alpine_1
             sleep 10
             docker images
             curl http://127.0.0.1:8080/demosite || exit 1 
