@@ -46,7 +46,7 @@ jobs:
             do
               sleep 10
               {
-                status=$(docker inspect --format='{{.State.Health.Status}}' lamp-alpine)
+                status=$(docker inspect --format='{{.State.Health.Status}}' lamp)
               } || {
                 status="unhealthy"
               }
