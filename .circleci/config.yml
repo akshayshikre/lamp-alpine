@@ -41,7 +41,8 @@ jobs:
       - run:
           name: Wait for proxy
           command: |
-            until [ $(docker inspect --format='{{.State.Running}}' app_lamp-alpine) == true]
+            docker inspect --format '{{json .State.Health }}' app_lamp-alpine
+            until [ true ]
             do
               sleep 10
               echo Waiting for docker's running state
