@@ -2,6 +2,5 @@ version:  '3'
 services:
   lamp-alpine:
     build: .
-      cache_from: app
     ports:
       - "80:80"
