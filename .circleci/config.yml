@@ -32,17 +32,13 @@ jobs:
           name: Build application Docker image
           command: |
             docker-compose up -d
+          background: true  
       - run:
           name: "Start Service and Check That it’s Running"
           command: |
             docker images
-            docker run -d --name lamp -p 8080:80/tcp app_lamp-alpine
-          background: true
-      - run:
-          name: Wait for proxy
-          command: |
             sleep 10
-            curl --silent --fail localhost:8080/demosite || exit 1      
+            curl --silent --fail localhost:80/demosite || exit 1 
       - run:
           name: Save Docker image layer cache
           command: |
