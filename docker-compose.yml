@@ -2,8 +2,5 @@ version:  '3'
 services:
   lamp-alpine:
     build: .
-    expose:
-            - "80"
-            - "8080"
     ports:
-      - "127.0.0.1:8080:80"
+      - "${MY_DOCKER_IP:-127.0.0.1}:8080:80"
