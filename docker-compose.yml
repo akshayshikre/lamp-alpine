@@ -1,6 +1,8 @@
-version: "2.0"
+version: '3'
 services:
   lamp-alpine:
     build: .
+      cache_from:
+        - ${BACKEND_IMAGE_LATEST}
     ports:
       - "80:80"
