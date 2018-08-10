@@ -29,9 +29,10 @@ jobs:
             set +o pipefail
             docker load -i /caches/app.tar | true
       - run:
-          name: Build application Docker image
+          name: Build application Docker image and test
           command: |
-            docker-compose build --cache-from=app -t app .
+            docker --cache-from=app -t app .
+            docker-compose up -d
       - run:
           name: Save Docker image layer cache
           command: |
