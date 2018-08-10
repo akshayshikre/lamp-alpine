@@ -39,7 +39,7 @@ jobs:
             docker run -d --publish 8080:80/tcp app_lamp-alpine
             sleep 10
             docker images
-            curl http:8080//localhost/demosite || exit 1 
+            curl http://127.0.0.1:8080/demosite || exit 1 
       - run:
           name: Save Docker image layer cache
           command: |
