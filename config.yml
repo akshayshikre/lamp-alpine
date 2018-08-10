@@ -3,7 +3,7 @@ jobs:
   build:
     working_directory: /app
     docker:
-      - image: docker:17.05.0-ce-git
+      - image: docker:18.06.0-ce-git
     steps:
       - checkout
       - setup_remote_docker
@@ -11,7 +11,10 @@ jobs:
           name: Install dependencies
           command: |
             apk add --no-cache \
-              py-pip=9.0.0-r1
+              python \
+              python-dev \
+              py-pip \
+              curl
             pip install \
               docker-compose==1.12.0 \
               awscli==1.11.76
@@ -42,7 +45,18 @@ jobs:
           name: Push application Docker image
           command: |
             if [ "${CIRCLE_BRANCH}" == "master" ]; then
-              cat ~/pass.txt | docker login --username akshayshikre --password-stdin
-              docker tag app "akshayshikre/lamp-alpine:${CIRCLE_SHA1}"
-              docker push "akshayshikre/lamp-alpine:${CIRCLE_SHA1}"
+              docker login -u $DOCKER_HUB_USER_ID -p $DOCKER_HUB_PWD
+              docker tag app $DOCKER_HUB_USER_ID/lamp-alpine:${CIRCLE_SHA1}
+              docker push $DOCKER_HUB_USER_ID/lamp-alpine:${CIRCLE_SHA1}
             fi
+      - run:
+          name: testing
+          command: |
+            if [ "${CIRCLE_BRANCH}" == "master" ]; then
+               curl -fsS http://google.com
+            fi
+workflows:
+  version: 2
+  build_and_test:
+    jobs:
+      - build
