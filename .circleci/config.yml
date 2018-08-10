@@ -41,15 +41,10 @@ jobs:
       - run:
           name: Wait for proxy
           command: |
-            status="unhealthy"
-            until [ $status == "running" ]
+            until [ $(docker inspect --format='{{.State.Running}}' app_lamp-alpine)]
             do
               sleep 10
-              {
-                status=$(docker inspect --format='{{.State.Status}}' app_lamp-alpine)
-              } || {
-                status="unhealthy"
-              }
+              echo Waiting for docker's running state
             done
             echo get container ip address
             docker exec lamp curl --retry 10 --retry-connrefused http://localhost:8080
