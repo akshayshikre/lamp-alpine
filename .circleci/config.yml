@@ -36,21 +36,20 @@ jobs:
           name: "Start Service and Check That it’s Running"
           command: |
             docker images
-            docker run -d --name lamp -p 8080:80 app_lamp-alpine
+            docker run -d --name lamp -p 8080:80/tcp app_lamp-alpine
           background: true
       - run:
           name: Wait for proxy
           command: |
             status="unhealthy"
-            until [ $status == "healthy" ]
+            until [ $status == "running" ]
             do
               sleep 10
               {
-                status=$(docker inspect --format='{{.State.Health.Status}}' app_lamp-alpine)
+                status=$(docker inspect --format='{{.State.Status}}' app_lamp-alpine)
               } || {
                 status="unhealthy"
               }
-              docker inspect --format='{{.State.Health.Status}}' app_lamp-alpine
             done
             echo get container ip address
             docker exec lamp curl --retry 10 --retry-connrefused http://localhost:8080
