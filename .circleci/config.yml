@@ -31,8 +31,7 @@ jobs:
       - run:
           name: Build application Docker image
           command: |
-            docker-compose up -d
-          background: true  
+            docker-compose up -d  
       - run:
           name: "Start Service and Check That it’s Running"
           command: |
