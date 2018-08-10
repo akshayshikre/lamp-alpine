@@ -3,6 +3,6 @@ services:
   lamp-alpine:
     build: .
       cache_from: 
-        - ${BACKEND_IMAGE_LATEST}
+        - app
     ports:
       - "80:80"
