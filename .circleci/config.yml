@@ -4,7 +4,7 @@ jobs:
     working_directory: /app
     docker:
       - image: docker:18.06.0-ce-git
-    steps:
+     steps:
       - checkout
       - setup_remote_docker
       - run:
