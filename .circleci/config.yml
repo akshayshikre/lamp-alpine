@@ -36,7 +36,7 @@ jobs:
       - run:
           name: "Start Service and Check That it’s Running"
           command: |
-            docker-compose run -it -d --publish 8080:80/tcp lamp-alpine
+            docker-compose run -d --publish 8080:80/tcp lamp-alpine
             docker images
             sleep 10
             docker images
