@@ -41,8 +41,8 @@ jobs:
       - run:
           name: Wait for proxy
           command: |
-            docker inspect --format '{{json .State.Health }}' app_lamp-alpine
-            
+            sleep 10
+            curl --silent --fail localhost:8080/demosite || exit 1      
       - run:
           name: Save Docker image layer cache
           command: |
