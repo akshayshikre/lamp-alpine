@@ -45,9 +45,9 @@ jobs:
           name: Push application Docker image
           command: |
             if [ "${CIRCLE_BRANCH}" == "master" ]; then
-              docker login -u akshayshikre -p sqr@12345
-              docker tag app "akshayshikre/lamp-alpine:${CIRCLE_SHA1}"
-              docker push "akshayshikre/lamp-alpine:${CIRCLE_SHA1}"
+              docker login -u $DOCKER_HUB_USER_ID -p $DOCKER_HUB_PWD
+              docker tag app $DOCKER_HUB_USER_ID/lamp-alpine:${CIRCLE_SHA1}
+              docker push $DOCKER_HUB_USER_ID/lamp-alpine:${CIRCLE_SHA1}
             fi
       - run:
           name: testing
