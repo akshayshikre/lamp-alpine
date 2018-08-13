@@ -24,7 +24,7 @@ jobs:
           paths:
             - /caches/${CIRCLE_BRANCH}/app.tar
       - run:
-          name: Load Docker image layer cache
+          name: Load Docker image layer cache branchwise
           command: |
             set +o pipefail
             docker load -i /caches/${CIRCLE_BRANCH}/app.tar | true
