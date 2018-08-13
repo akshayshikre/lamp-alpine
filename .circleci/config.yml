@@ -60,15 +60,15 @@ jobs:
           command: |
             if [ "${CIRCLE_BRANCH}" == "master" ]; then
               docker login -u $DOCKER_HUB_USER_ID -p $DOCKER_HUB_PWD
-              docker tag app $DOCKER_HUB_USER_ID/lamp-alpine:${CIRCLE_SHA1}
-              docker tag app $DOCKER_HUB_USER_ID/lamp-alpine:latest
+              docker tag app_lamp-alpine $DOCKER_HUB_USER_ID/lamp-alpine:${CIRCLE_SHA1}
+              docker tag app_lamp-alpine $DOCKER_HUB_USER_ID/lamp-alpine:latest
               docker push $DOCKER_HUB_USER_ID/lamp-alpine:${CIRCLE_SHA1}
               docker push $DOCKER_HUB_USER_ID/lamp-alpine:latest
             fi
             if [ "${CIRCLE_BRANCH}" == "development" ]; then
               docker login -u $DOCKER_HUB_USER_ID -p $DOCKER_HUB_PWD
-              docker tag app $DOCKER_HUB_USER_ID/lamp-alpine:${CIRCLE_SHA1}
-              docker tag app $DOCKER_HUB_USER_ID/lamp-alpine:development
+              docker tag app_lamp-alpine $DOCKER_HUB_USER_ID/lamp-alpine:${CIRCLE_SHA1}
+              docker tag app_lamp-alpine $DOCKER_HUB_USER_ID/lamp-alpine:development
               docker push $DOCKER_HUB_USER_ID/lamp-alpine:${CIRCLE_SHA1}
               docker push $DOCKER_HUB_USER_ID/lamp-alpine:development
             fi
