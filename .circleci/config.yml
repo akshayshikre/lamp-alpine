@@ -39,7 +39,7 @@ jobs:
             docker images
             docker ps -a
             docker-compose logs
-            docker-compose port app_lamp-alpine 8080
+            docker-compose port lamp-alpine 8080
             curl http://127.0.0.1:8080 || exit 1 
       - run:
           name: Save Docker image layer cache
