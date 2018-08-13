@@ -2,12 +2,12 @@ version:  '3'
 services:
   lamp-alpine:
     build: .
-    networks:
-      - internal
-    container_name: 'lamp'
+    container_name: lamp
     ports:
-      - "${MY_DOCKER_IP:-127.0.0.1}:8080:80"
+      - "127.0.0.1:80:80"
+    networks:
+      - private-network   
 
 networks:
-  internal:
+  private-network:
     driver: bridge
