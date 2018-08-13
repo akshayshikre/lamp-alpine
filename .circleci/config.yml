@@ -35,13 +35,14 @@ jobs:
       - run:
           name: "Check Service is running or not"
           command: |
-            set -x
-            sleep 30
-            docker images
-            docker ps -a
-            docker-compose logs
-            docker-compose port lamp-alpine 80
-            docker-compose exec lamp-alpine curl --retry 10 --retry-delay 5 -v http://127.0.0.1:80
+            if [ "${CIRCLE_BRANCH}" == "master" ]; then
+                echo executing master test file
+                ./master-test.sh
+            fi
+            if [ "${CIRCLE_BRANCH}" == "development" ]; then
+                echo executing development test file
+                ./development-test.sh
+            fi
       - run:
           name: Save Docker image layer cache
           command: |
@@ -52,12 +53,21 @@ jobs:
           paths:
             - /caches/app.tar
       - deploy:
-          name: Push application Docker image
+          name: Push application as Docker image
           command: |
             if [ "${CIRCLE_BRANCH}" == "master" ]; then
               docker login -u $DOCKER_HUB_USER_ID -p $DOCKER_HUB_PWD
               docker tag app $DOCKER_HUB_USER_ID/lamp-alpine:${CIRCLE_SHA1}
+              docker tag app $DOCKER_HUB_USER_ID/lamp-alpine:latest
               docker push $DOCKER_HUB_USER_ID/lamp-alpine:${CIRCLE_SHA1}
+              docker push $DOCKER_HUB_USER_ID/lamp-alpine:latest
+            fi
+            if [ "${CIRCLE_BRANCH}" == "development" ]; then
+              docker login -u $DOCKER_HUB_USER_ID -p $DOCKER_HUB_PWD
+              docker tag app $DOCKER_HUB_USER_ID/lamp-alpine:${CIRCLE_SHA1}
+              docker tag app $DOCKER_HUB_USER_ID/lamp-alpine:development
+              docker push $DOCKER_HUB_USER_ID/lamp-alpine:${CIRCLE_SHA1}
+              docker push $DOCKER_HUB_USER_ID/lamp-alpine:development
             fi
       
 workflows:
