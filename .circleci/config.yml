@@ -31,17 +31,16 @@ jobs:
       - run:
           name: Build application Docker image
           command: |
-             docker build --cache-from=app -t app .
+            docker-compose up -d  
       - run:
           name: "Start Service and Check That it’s Running"
           command: |
+            sleep 60
             docker images
             docker ps -a
-            docker run -d --name lamp -p 127.0.0.1:8080:80 app
-            sleep 10
-            docker images
-            docker ps -a
-            docker exec lamp curl --retry-delay 5 --retry 10  --retry-connrefused http://127.0.0.1:8080 
+            docker-compose logs
+            docker-compose port lamp-alpine 8080
+            docker-compose exec lamp-alpine curl --retry-delay 5 --retry 10  --retry-connrefused http://127.0.0.1:8080 
       - run:
           name: Save Docker image layer cache
           command: |
