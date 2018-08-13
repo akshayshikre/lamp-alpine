@@ -4,4 +4,4 @@ services:
     build: .
     container_name: 'lamp'
     ports:
-      - "127.0.0.1:8080:80"
+      - "${MY_DOCKER_IP:-127.0.0.1}:8080:80"
