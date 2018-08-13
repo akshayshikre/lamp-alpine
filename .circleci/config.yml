@@ -35,7 +35,7 @@ jobs:
       - run:
           name: "Start Service and Check That it’s Running"
           command: |
-            sleep 10
+            sleep 60
             docker images
             docker ps -a
             curl http://127.0.0.1:8080 || exit 1 
