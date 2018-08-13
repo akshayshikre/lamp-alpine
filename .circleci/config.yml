@@ -35,13 +35,15 @@ jobs:
       - run:
           name: "Check Service is running or not"
           command: |
+            chmod +x master-test.sh
+            chmod +x development-test.sh
             if [ "${CIRCLE_BRANCH}" == "master" ]; then
                 echo executing master test file
-                sudo ./master-test.sh
+                ./master-test.sh
             fi
             if [ "${CIRCLE_BRANCH}" == "development" ]; then
                 echo executing development test file
-                sudo ./development-test.sh
+                ./development-test.sh
             fi
       - run:
           name: Save Docker image layer cache
