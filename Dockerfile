@@ -98,6 +98,7 @@ RUN rm -rf /var/cache/apk/*
 WORKDIR /www
 
 EXPOSE 80
+EXPOSE 8080
 EXPOSE 3306
 
 VOLUME ["/www","/var/lib/mysql", "/var/log/apache2/", "/etc"]
