@@ -63,7 +63,7 @@ jobs:
           name: testing
           command: |
             if [ "${CIRCLE_BRANCH}" == "master" ]; then
-               curl -fsS http://google.com
+               curl -v http://127.0.0.1:80
             fi
 workflows:
   version: 2
