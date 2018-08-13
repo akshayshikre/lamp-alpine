@@ -50,7 +50,7 @@ jobs:
           command: |
             mkdir -p /caches
             mkdir -p /caches/${CIRCLE_BRANCH}
-            docker save -o /caches/${CIRCLE_BRANCH}/app.tar app
+            docker save -o /caches/${CIRCLE_BRANCH}/app.tar app_lamp-alpine
       - save_cache:
           key: v1-{{ .Branch }}-{{ epoch }}
           paths:
