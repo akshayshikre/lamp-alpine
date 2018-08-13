@@ -37,11 +37,11 @@ jobs:
           command: |
             if [ "${CIRCLE_BRANCH}" == "master" ]; then
                 echo executing master test file
-                ./master-test.sh
+                sudo ./master-test.sh
             fi
             if [ "${CIRCLE_BRANCH}" == "development" ]; then
                 echo executing development test file
-                ./development-test.sh
+                sudo ./development-test.sh
             fi
       - run:
           name: Save Docker image layer cache
