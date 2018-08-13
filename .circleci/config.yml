@@ -59,12 +59,7 @@ jobs:
               docker tag app $DOCKER_HUB_USER_ID/lamp-alpine:${CIRCLE_SHA1}
               docker push $DOCKER_HUB_USER_ID/lamp-alpine:${CIRCLE_SHA1}
             fi
-      - run:
-          name: testing
-          command: |
-            if [ "${CIRCLE_BRANCH}" == "master" ]; then
-               curl -v http://127.0.0.1:80
-            fi
+      
 workflows:
   version: 2
   build_and_test:
