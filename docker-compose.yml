@@ -2,5 +2,6 @@ version:  '3'
 services:
   lamp-alpine:
     build: .
+    container_name: 'lamp'
     ports:
-      - "${MY_DOCKER_IP:-127.0.0.1}:8080:80"
+      - "127.0.0.1:80:80"
