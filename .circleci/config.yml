@@ -29,11 +29,11 @@ jobs:
             set +o pipefail
             docker load -i /caches/app.tar | true
       - run:
-          name: Build application Docker image
+          name: Build and run application Docker image
           command: |
             docker-compose up -d 
       - run:
-          name: "Start Service and Check That it’s Running"
+          name: "Check Service is running or not"
           command: |
             set -x
             sleep 30
