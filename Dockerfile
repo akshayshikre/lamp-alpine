@@ -2,7 +2,7 @@ From alpine:latest
 MAINTAINER akshayshikre - https://github.com/akshayshikre
 
 # Timezone
-ENV imgdate
+ENV imgdate             ${imgdate}
 ENV TIMEZONE            Asia/Kolkata
 ENV PHP_MEMORY_LIMIT    512M
 ENV MAX_UPLOAD          256M
