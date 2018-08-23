@@ -31,6 +31,10 @@ jobs:
       - run:
           name: Build and run application Docker image
           command: |
+            touch .env
+            imgdate=$(date)
+            echo "imgdate=${imgdate}" > .env
+            cat .env
             docker-compose up -d 
       - run:
           name: "Check Service is running or not"
