@@ -2,12 +2,14 @@ From alpine:latest
 MAINTAINER akshayshikre - https://github.com/akshayshikre
 
 # Timezone
+ENV imgdate
 ENV TIMEZONE            Asia/Kolkata
 ENV PHP_MEMORY_LIMIT    512M
 ENV MAX_UPLOAD          256M
 ENV PHP_MAX_FILE_UPLOAD 200
 ENV PHP_MAX_POST        256M
 
+echo "imgdate:-${imgdate}"
 # install mysql, apache and php and php extensions, tzdata, wget
 RUN echo "@community http://dl-cdn.alpinelinux.org/alpine/edge/community" >> /etc/apk/repositories && \
     apk update && \
