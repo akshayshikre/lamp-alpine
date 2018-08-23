@@ -8,9 +8,9 @@ services:
     networks:
       - private-network   
     environment:
-        Image_Created_Date: ${imgdate}
+      - Image_Created_Date=${imgdate}
     args:
-        imgdate_arg: ${imgdate}
+      - imgdate_arg=${imgdate}
 
 networks:
   private-network:
