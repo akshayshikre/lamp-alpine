@@ -1,16 +1,15 @@
-version:  '3'
+version:  "3.5"
 services:
   lamp-alpine:
-    build: .
+    build:
+      context: .
+      args:
+        Image_Created_var: "${Image_Created_Date}"
     container_name: lamp
     ports:
       - "127.0.0.1:80:80"
     networks:
-      - private-network   
-    environment:
-      - Image_Created_Date=${imgdate}
-    args:
-      - imgdate_arg=${imgdate}
+      - private-network 
 
 networks:
   private-network:
