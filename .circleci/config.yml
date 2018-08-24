@@ -33,7 +33,7 @@ jobs:
           command: |
             touch .env
             imgdate=$(date)
-            echo "imgdate=${imgdate}" > .env
+            echo "Image_Created_Date=${imgdate}" > .env
             cat .env
             docker-compose up -d 
       - run:
