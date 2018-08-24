@@ -1,17 +1,16 @@
 From alpine:latest
+ARG Image_Created_var
 MAINTAINER akshayshikre - https://github.com/akshayshikre
-
-ARG imgdate_arg
+LABEL Image_Created_Date_Label="${Image_Created_var}"
 
 # Timezone
-ENV myimgdate=$imgdate_arg
+ENV Image_Created="${Image_Created_var}"
 ENV TIMEZONE            Asia/Kolkata
 ENV PHP_MEMORY_LIMIT    512M
 ENV MAX_UPLOAD          256M
 ENV PHP_MAX_FILE_UPLOAD 200
 ENV PHP_MAX_POST        256M
 
-RUN echo "myimgdate:-${myimgdate}"
 # install mysql, apache and php and php extensions, tzdata, wget
 RUN echo "@community http://dl-cdn.alpinelinux.org/alpine/edge/community" >> /etc/apk/repositories && \
     apk update && \
