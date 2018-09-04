@@ -62,7 +62,13 @@ jobs:
           command: |
             mkdir -p /caches
             mkdir -p /caches/${CIRCLE_BRANCH}
-            docker save -o /caches/${CIRCLE_BRANCH}/app.tar app_lamp-alpine
+            if [ "${CIRCLE_BRANCH}" == "master" ]; then
+              docker save -o /caches/${CIRCLE_BRANCH}/app.tar $DOCKER_HUB_USER_ID/lamp-alpine:latest
+            fi
+            if [ "${CIRCLE_BRANCH}" == "development" ]; then
+              docker save -o /caches/${CIRCLE_BRANCH}/app.tar $DOCKER_HUB_USER_ID/lamp-alpine:development
+            fi
+            
       - save_cache:
           key: v1-{{ .Branch }}-{{ epoch }}
           paths:
