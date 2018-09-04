@@ -36,6 +36,7 @@ jobs:
             echo "ORG=$DOCKER_HUB_USER_ID" >> ".env"
             echo "IMGNAME=lamp-alpine" >> ".env"
             echo "CONTNAME=lamp" >> ".env"
+            echo "NETWORKNAME=frontend-backend" >> ".env"
             if [ "${CIRCLE_BRANCH}" == "master" ]; then
                 echo "IMGTAG=latest" >> ".env"
             fi
