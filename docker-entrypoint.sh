@@ -90,6 +90,8 @@ httpd
 
 exec /usr/bin/mysqld --user=root
 
+exit 0
+
 # echo "CREATE DATABASE IF NOT EXISTS demosite; use demosite; source /www/demosite.sql ;" | mysql -u root
 
 # echo "db imported"
