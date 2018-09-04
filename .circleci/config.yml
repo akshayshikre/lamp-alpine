@@ -31,7 +31,6 @@ jobs:
       - run:
           name: Build and run application Docker image
           command: |
-            touch .env
             imgdate=$(date)
             echo "Image_Created_Date=${imgdate}" > .env
             echo "ORG=$DOCKER_HUB_USER_ID" >> ".env"
