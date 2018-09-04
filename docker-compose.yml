@@ -5,7 +5,8 @@ services:
       context: .
       args:
         Image_Created_var: "${Image_Created_Date}"
-    container_name: lamp
+    container_name: "${CONTNAME}"
+    image: "${ORG}/${IMGNAME}:${IMGTAG}"
     ports:
       - "127.0.0.1:80:80"
     networks:
