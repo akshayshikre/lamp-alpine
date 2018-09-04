@@ -29,7 +29,7 @@ jobs:
             set +o pipefail
             docker load -i /caches/${CIRCLE_BRANCH}/app.tar | true
       - run:
-          name: Build and run application Docker image
+          name: Build and run application Docker images
           command: |
             imgdate=$(date)
             echo "Image_Created_Date=${imgdate}" > .env
