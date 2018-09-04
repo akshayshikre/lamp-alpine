@@ -34,7 +34,15 @@ jobs:
             touch .env
             imgdate=$(date)
             echo "Image_Created_Date=${imgdate}" > .env
-            cat .env
+            echo "ORG=$DOCKER_HUB_USER_ID" >> ".env"
+            echo "IMGNAME=lamp-alpine" >> ".env"
+            echo "CONTNAME=lamp" >> ".env"
+            if [ "${CIRCLE_BRANCH}" == "master" ]; then
+                echo "IMGTAG=latest" >> ".env"
+            fi
+            if [ "${CIRCLE_BRANCH}" == "development" ]; then
+                echo "IMGTAG=development" >> ".env"
+            fi
             docker-compose up -d 
       - run:
           name: "Check Service is running or not"
