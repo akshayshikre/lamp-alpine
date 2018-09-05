@@ -8,7 +8,7 @@ jobs:
       - checkout
       - setup_remote_docker
       - run:
-          name: Install dependenciess
+          name: Install dependencies
           command: |
             apk add --no-cache \
               python \
@@ -36,6 +36,7 @@ jobs:
             echo "ORG=$DOCKER_HUB_USER_ID" >> ".env"
             echo "IMGNAME=lamp-alpine" >> ".env"
             echo "CONTNAME=lamp" >> ".env"
+            echo "NETWORKNAME=frontend-backend" >> ".env"
             if [ "${CIRCLE_BRANCH}" == "master" ]; then
                 echo "IMGTAG=latest" >> ".env"
             fi
